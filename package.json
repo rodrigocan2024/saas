@@ -1,16 +1,20 @@
 {
   "name": "saas",
   "private": true,
-  "workspaces": ["packages/*", "apps/*", "tooling/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "tooling/*"
+  ],
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo clean",
     "dev": "turbo dev --parallel",
-    "dev:web": "turbo dev --filter=@v1/web",
-    "dev:app": "turbo dev --filter=@v1/app",
-    "start:web": "turbo start --filter=@v1/web",
-    "start:app": "turbo start --filter=@v1/app",
+    "dev:web": "turbo dev --filter=@saas/web",
+    "dev:app": "turbo dev --filter=@saas/app",
+    "start:web": "turbo start --filter=@saas/web",
+    "start:app": "turbo start --filter=@saas/app",
     "test": "turbo test --parallel",
     "format": "biome format --write .",
     "lint": "turbo lint && bun lint:repo",
@@ -18,7 +22,6 @@
     "lint:repo:fix": "bunx sherif@latest --fix",
     "typecheck": "turbo typecheck"
   },
-  "dependencies": {},
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@t3-oss/env-nextjs": "^0.11.1",
