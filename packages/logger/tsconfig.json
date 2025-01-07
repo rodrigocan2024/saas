@@ -1,0 +1,12 @@
+{
+    "extends": "@saas/typescript/base.json",
+    "compilerOptions": {
+        "baseUrl": "."
+    },
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
