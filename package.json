@@ -12,6 +12,7 @@
     "clean:workspaces": "turbo clean",
     "dev": "turbo dev --parallel",
     "dev:web": "turbo dev --filter=@saas/web",
+    "dev:jobs": "turbo jobs --filter=@saas/jobs",
     "dev:app": "turbo dev --filter=@saas/app",
     "start:web": "turbo start --filter=@saas/web",
     "start:app": "turbo start --filter=@saas/app",
