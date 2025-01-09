@@ -8,15 +8,17 @@ const I18nMiddleware = createI18nMiddleware({
     urlMappingStrategy: "rewrite",
 });
 
+const allowedRoutes = ["/login", "/sign-up", "/forgot-password"];
+
 export async function middleware(request: NextRequest) {
     const { response, user } = await updateSession(
         request,
         I18nMiddleware(request),
     );
 
-    const isLoginOrSignUp = request.nextUrl.pathname.endsWith("/login") || request.nextUrl.pathname.endsWith("/sign-up");
+    const isAllowedRoute = allowedRoutes.some(route => request.nextUrl.pathname.endsWith(route));
 
-    if (!isLoginOrSignUp && !user) {
+    if (!isAllowedRoute && !user) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
 

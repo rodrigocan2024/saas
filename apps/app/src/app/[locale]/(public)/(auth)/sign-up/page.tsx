@@ -2,6 +2,10 @@ import { Card } from "@saas/ui/card";
 import Link from "next/link";
 import { SignUpForm } from "./components/sign-up-form";
 
+export const metadata = {
+    title: "Criar conta",
+};
+
 export default function Page() {
     return (
         <Card className="p-6">
