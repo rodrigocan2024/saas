@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { PasswordInput } from "@/components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,36 +6,42 @@ import { Button } from "@saas/ui/button";
 import { cn } from "@saas/ui/cn";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@saas/ui/form";
 import { Input } from "@saas/ui/input";
-import Link from "next/link";
 import { type HTMLAttributes, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-type UserAuthFormProps = HTMLAttributes<HTMLDivElement>
+type SignUpFormProps = HTMLAttributes<HTMLDivElement>
 
-const formSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: "Por favor, preencha com seu e-mail" })
-        .email({ message: "E-mail inválido" }),
-    password: z
-        .string()
-        .min(1, {
-            message: "Por favor, preencha com sua senha"
-        })
-        .min(8, {
-            message: "A senha deve ter pelo menos 8 caracteres"
-        })
-})
+const formSchema = z
+    .object({
+        email: z
+            .string()
+            .min(1, { message: "Preencha com seu e-mail" })
+            .email({ message: "E-mail inválido" }),
+        password: z
+            .string()
+            .min(1, {
+                message: "Preencha com sua senha"
+            })
+            .min(8, {
+                message: "Sua senha deve ter pelo menos 8 caracteres"
+            }),
+        confirmPassword: z.string()
+    })
+    .refine((data) => data.password === data.confirmPassword, {
+        message: "A senha e a confirmação não conferem",
+        path: ["confirmPassword"]
+    })
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function SignUpForm({ className, ...props }: SignUpFormProps) {
     const [isLoading, setIsLoading] = useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
-            password: ""
+            password: "",
+            confirmPassword: ""
         }
     })
 
@@ -72,15 +78,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             name="password"
                             render={({ field }) => (
                                 <FormItem className="space-y-1">
-                                    <div className="flex items-center justify-between">
-                                        <FormLabel>Senha</FormLabel>
-                                        <Link
-                                            href="/forgot-password"
-                                            className="text-sm font-medium text-muted-foreground hover:opacity-75"
-                                        >
-                                            Esqueceu sua senha?
-                                        </Link>
-                                    </div>
+                                    <FormLabel>Senha</FormLabel>
+                                    <FormControl>
+                                        <PasswordInput placeholder="********" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="confirmPassword"
+                            render={({ field }) => (
+                                <FormItem className="space-y-1">
+                                    <FormLabel>Confirmação da senha</FormLabel>
                                     <FormControl>
                                         <PasswordInput placeholder="********" {...field} />
                                     </FormControl>
@@ -89,10 +100,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             )}
                         />
                         <Button className="mt-2" disabled={isLoading}>
-                            Entrar
+                            Criar conta
                         </Button>
 
-                        {/* TODO: OAuth login */}
+                        {/* TODO: OAuth sign up */}
                     </div>
                 </form>
             </Form>
