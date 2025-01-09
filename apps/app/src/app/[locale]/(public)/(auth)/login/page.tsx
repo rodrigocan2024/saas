@@ -12,8 +12,14 @@ export default function Page() {
             <div className="flex flex-col space-y-2 text-left">
                 <h1 className="text-2xl font-semibold tracking-tight">Login</h1>
                 <p className="text-sm text-muted-foreground">
-                    Preencha abaixo com seu e-mail e senha <br />
-                    para entrar na sua conta
+                    Preencha abaixo com seu e-mail e senha para entrar na sua conta. <br />
+                    Ainda não tem uma conta?{" "}
+                    <Link
+                        href="/sign-up"
+                        className="underline underline-offset-4 hover:text-primary"
+                    >
+                        Criar conta
+                    </Link>
                 </p>
             </div>
             <UserAuthForm />
