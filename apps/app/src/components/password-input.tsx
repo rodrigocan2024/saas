@@ -2,7 +2,6 @@ import { Button } from "@saas/ui/button";
 import { cn } from "@saas/ui/cn";
 import { Icons } from '@saas/ui/icons'
 import * as React from "react"
-import { type InputHTMLAttributes, useState } from "react";
 
 type PasswordInputProps = Omit<
     React.InputHTMLAttributes<HTMLInputElement>,

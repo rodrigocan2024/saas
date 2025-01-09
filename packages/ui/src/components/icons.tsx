@@ -1,4 +1,4 @@
-import { Check, Copy, Eye, EyeOff, Loader2, LogOut } from "lucide-react";
+import { BadgeCheck, Bell, Check, ChevronRight, ChevronsUpDown, Copy, CreditCard, Eye, EyeOff, Loader2, LogOut, LogOut as LogOut2, Sparkles } from "lucide-react";
 
 export const Icons = {
     SignOut: LogOut,
@@ -6,5 +6,12 @@ export const Icons = {
     Check,
     Loader: Loader2,
     Eye,
-    EyeOff
+    EyeOff,
+    ChevronRight,
+    BadgeCheck,
+    Bell,
+    ChevronsUpDown,
+    CreditCard,
+    LogOut2,
+    Sparkles
 };
