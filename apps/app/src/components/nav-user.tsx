@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import { Icons } from "@saas/ui/icons";
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from "@saas/ui/sidebar";
 import Link from "next/link";
+import { TeamSwitcher } from "./theme-switcher";
 
 export function NavUser({
     user
