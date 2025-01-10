@@ -84,7 +84,7 @@ export function NavUser({
                             <DropdownMenuItem asChild>
                                 <Link href="/settings/notifications">
                                     <Icons.Bell />
-                                    Avisos
+                                    Notificações
                                 </Link>
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
