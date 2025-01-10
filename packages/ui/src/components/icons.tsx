@@ -1,4 +1,4 @@
-import { AudioWaveform, BadgeCheck, Bell, Boxes, Check, ChevronRight, ChevronsUpDown, CircleHelp, ClipboardList, Command, Copy, CreditCard, Eye, EyeOff, GalleryVerticalEnd, LayoutDashboard, Loader2, LogOut, LogOut as LogOut2, MessagesSquare, MonitorCheck, Palette, Plus, Settings, Sparkles, UserCog, Users, Wrench } from "lucide-react";
+import { AudioWaveform, BadgeCheck, Bell, Boxes, Check, ChevronRight, ChevronsUpDown, CircleHelp, ClipboardList, Command, Copy, CreditCard, Eye, EyeOff, GalleryVerticalEnd, LayoutDashboard, Loader2, LogOut, LogOut as LogOut2, Menu, MessagesSquare, MonitorCheck, Palette, Plus, Settings, Sparkles, UserCog, Users, Wrench } from "lucide-react";
 
 export const Icons = {
     SignOut: LogOut,
@@ -28,5 +28,6 @@ export const Icons = {
     Settings,
     Wrench,
     UserCog,
-    Users
+    Users,
+    Menu
 };
