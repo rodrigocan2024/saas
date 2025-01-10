@@ -29,7 +29,6 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
                                 <Link
                                     href={href}
                                     className={!isActive ? "text-muted-foreground" : ""}
-                                    disabled={disabled}
                                 >
                                     {title}
                                 </Link>
@@ -49,8 +48,7 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
                 {links.map(({ title, href, isActive, disabled }) => (
                     <Link
                         key={`${title}-${href}`}
-                        to={href}
-                        disabled={disabled}
+                        href={href}
                         className={`text-sm font-medium transition-colors hover:text-primary ${isActive ? '' : 'text-muted-foreground'}`}
                     >
                         {title}
