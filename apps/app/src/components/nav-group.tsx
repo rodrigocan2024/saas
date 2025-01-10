@@ -1,3 +1,5 @@
+"use client";
+
 import { Badge } from "@saas/ui/badge"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@saas/ui/collapsible"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@saas/ui/dropdown-menu"

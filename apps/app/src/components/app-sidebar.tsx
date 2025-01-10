@@ -1,3 +1,5 @@
+"use client"
+
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@saas/ui/sidebar";
 import { sidebarData } from "./data/sidebar-data";
 import { NavGroup } from "./nav-group";
