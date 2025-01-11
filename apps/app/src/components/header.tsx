@@ -1,8 +1,9 @@
 "use client"
 
-import { Separator } from '@/components/ui/separator'
-import { SidebarTrigger } from '@/components/ui/sidebar'
-import { cn } from '@/lib/utils'
+import { cn } from '@saas/ui/cn'
+import { Separator } from "@saas/ui/separator"
+import { SidebarTrigger } from '@saas/ui/sidebar'
+import { SidebarProvider } from '@saas/ui/sidebar'
 import React from 'react'
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
@@ -40,7 +41,9 @@ export const Header = ({
             )}
             {...props}
         >
-            <SidebarTrigger variant='outline' className='scale-125 sm:scale-100' />
+            <SidebarProvider>
+                <SidebarTrigger variant='outline' className='scale-125 sm:scale-100' />
+            </SidebarProvider>
             <Separator orientation='vertical' className='h-6' />
             {children}
         </header>
