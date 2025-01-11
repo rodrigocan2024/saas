@@ -14,41 +14,7 @@ export const metadata = {
 export default function Page() {
     return (
         <>
-            {/* Top Heading */}
-            <Header>
-                <TopNav links={topNavLinks} />
-                <div className="ml-auto flex items-center space-x-4">
-                    <Search />
-                    <ProfileDropdown />
-                </div>
-            </Header>
+
         </>
     )
 }
-
-const topNavLinks = [
-    {
-        title: 'Visão Geral',
-        href: 'dashboard/overview',
-        isActive: true,
-        disabled: false,
-    },
-    {
-        title: 'Clientes',
-        href: 'dashboard/customers',
-        isActive: false,
-        disabled: true,
-    },
-    {
-        title: 'Produtos',
-        href: 'dashboard/products',
-        isActive: false,
-        disabled: true,
-    },
-    {
-        title: 'Configurações',
-        href: 'dashboard/settings',
-        isActive: false,
-        disabled: true,
-    },
-]
