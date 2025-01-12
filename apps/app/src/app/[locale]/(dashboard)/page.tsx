@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 import { Main } from "@/components/main";
 import { Overview } from "@/components/overview";
 import { ProfileDropdown } from "@/components/profile-dropdown";
+import { RecentSales } from "@/components/recent-sales";
 import { Search } from "@/components/search";
 import { TopNav } from "@/components/top-nav";
 import { Button } from "@saas/ui/button";
@@ -146,6 +147,17 @@ export default function Page() {
                             </CardHeader>
                             <CardContent className="pl-2">
                                 <Overview />
+                            </CardContent>
+                        </Card>
+                        <Card className="col-span-1 lg:col-span-3">
+                            <CardHeader>
+                                <CardTitle>Vendas recentes</CardTitle>
+                                <CardDescription>
+                                    Você fez 265 vendas esse mês.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <RecentSales />
                             </CardContent>
                         </Card>
                     </div>
