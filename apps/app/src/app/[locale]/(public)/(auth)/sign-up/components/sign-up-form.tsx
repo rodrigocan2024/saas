@@ -2,6 +2,7 @@
 
 import { PasswordInput } from "@/components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createClient } from "@saas/supabase/client";
 import { Button } from "@saas/ui/button";
 import { cn } from "@saas/ui/cn";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@saas/ui/form";
@@ -35,6 +36,7 @@ const formSchema = z
 
 export function SignUpForm({ className, ...props }: SignUpFormProps) {
     const [isLoading, setIsLoading] = useState(false)
+    const supabase = createClient()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -45,14 +47,22 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
         }
     })
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
-        // TODO
+    async function onSubmit(data: z.infer<typeof formSchema>) {
         setIsLoading(true)
-        console.log(data)
+        const { email, password } = data
 
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 3000)
+        const { error } = await supabase.auth.signUp({
+            email,
+            password,
+        })
+
+        if (error) {
+            console.error("Erro ao criar conta", error.message)
+        } else {
+            console.log("Conta criada com sucesso")
+        }
+
+        setIsLoading(false)
     }
 
     return (
