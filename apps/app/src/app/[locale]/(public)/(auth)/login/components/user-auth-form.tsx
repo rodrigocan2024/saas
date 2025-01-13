@@ -2,9 +2,11 @@
 
 import { PasswordInput } from "@/components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createClient } from "@saas/supabase/client";
 import { Button } from "@saas/ui/button";
 import { cn } from "@saas/ui/cn";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@saas/ui/form";
+import { Icons } from "@saas/ui/icons";
 import { Input } from "@saas/ui/input";
 import Link from "next/link";
 import { type HTMLAttributes, useState } from "react";
@@ -30,6 +32,7 @@ const formSchema = z.object({
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const [isLoading, setIsLoading] = useState(false)
+    const supabase = createClient()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -39,20 +42,25 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         }
     })
 
-    function onSubmit(data: z.infer<typeof formSchema>) {
-        // TODO
+    async function handleSignIn(data: z.infer<typeof formSchema>) {
         setIsLoading(true)
-        console.log(data)
+        const { email, password } = data
 
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 3000)
+        const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+        if (error?.message === "Invalid login credentials") {
+            console.error("E-mail e/ou senha incorreto(s)")
+        } else {
+            console.log("Login bem sucedido")
+        }
+
+        setIsLoading(false)
     }
 
     return (
         <div className={cn("grid gap-6", className)} {...props}>
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
+                <form onSubmit={form.handleSubmit(handleSignIn)}>
                     <div className="grid gap-2">
                         <FormField
                             control={form.control}
@@ -89,7 +97,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             )}
                         />
                         <Button className="mt-2" disabled={isLoading}>
-                            Entrar
+                            {isLoading ? (
+                                <Icons.Loader className="h-4 w-4 animate-spin" />
+                            ) : (
+                                <>Entrar</>
+                            )}
                         </Button>
 
                         {/* TODO: OAuth login */}

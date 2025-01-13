@@ -8,7 +8,7 @@ const I18nMiddleware = createI18nMiddleware({
     urlMappingStrategy: "rewrite",
 });
 
-const allowedRoutes = ["/login", "/sign-up", "/forgot-password", "/"]; // TODO: Remove "/""
+const allowedRoutes = ["/login", "/sign-up", "/forgot-password"]; // TODO: Remove "/""
 
 export async function middleware(request: NextRequest) {
     const { response, user } = await updateSession(
