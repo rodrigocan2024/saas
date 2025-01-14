@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Icons } from "@saas/ui/icons";
 import { Input } from "@saas/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { type HTMLAttributes, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -33,6 +34,7 @@ const formSchema = z.object({
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const [isLoading, setIsLoading] = useState(false)
     const supabase = createClient()
+    const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -43,18 +45,28 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     })
 
     async function handleSignIn(data: z.infer<typeof formSchema>) {
-        setIsLoading(true)
-        const { email, password } = data
+        try {
+            setIsLoading(true)
+            const { email, password } = data
 
-        const { error } = await supabase.auth.signInWithPassword({ email, password })
+            const { data: authData, error } = await supabase.auth.signInWithPassword({
+                email,
+                password
+            })
 
-        if (error?.message === "Invalid login credentials") {
-            console.error("E-mail e/ou senha incorreto(s)")
-        } else {
-            console.log("Login bem sucedido")
+            if (error) {
+                console.error("Erro ao fazer login:", error)
+                return
+            }
+
+            if (authData?.user) {
+                router.push("/")
+            }
+        } catch (error) {
+            console.error("Erro inesperado:", error)
+        } finally {
+            setIsLoading(false)
         }
-
-        setIsLoading(false)
     }
 
     return (

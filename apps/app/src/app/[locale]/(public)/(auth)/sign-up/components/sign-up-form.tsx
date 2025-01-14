@@ -59,6 +59,7 @@ export function SignUpForm({ className, ...props }: SignUpFormProps) {
         if (error) {
             console.error("Erro ao criar conta", error.message)
         } else {
+            // TODO: toast e redirect para login
             console.log("Conta criada com sucesso")
         }
 
